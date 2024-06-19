@@ -45,10 +45,10 @@ const (
 
 func (ct contentType) getInfo() string {
 	switch ct {
-	case base64Content:
-		return "Base64Detector: Failing file as it contains a base64 encoded text."
-	case hexContent:
-		return "HexDetector: Failing file as it contains a hex encoded text."
+	//	case base64Content:
+	//		return "Base64Detector: Failing file as it contains a base64 encoded text."
+	//	case hexContent:
+	//		return "HexDetector: Failing file as it contains a hex encoded text."
 	case creditCardContent:
 		return "CreditCardDetector: Failing file as it contains a potential credit card number."
 	}
@@ -57,10 +57,10 @@ func (ct contentType) getInfo() string {
 
 func (ct contentType) getMessageFormat() string {
 	switch ct {
-	case base64Content:
-		return "Expected file to not contain base64 encoded texts such as: %s"
-	case hexContent:
-		return "Expected file to not contain hex encoded texts such as: %s"
+	//	case base64Content:
+	//		return "Expected file to not contain base64 encoded texts such as: %s"
+	//	case hexContent:
+	//		return "Expected file to not contain hex encoded texts such as: %s"
 	case creditCardContent:
 		return "Expected file to not contain credit card numbers such as: %s"
 	}
@@ -82,16 +82,16 @@ func (fc *FileContentDetector) Test(comparator helpers.ChecksumCompare, currentA
 		fn
 		severity severity.Severity
 	}{
-		{
-			contentType: base64Content,
-			fn:          checkBase64,
-			severity:    severity.SeverityConfiguration["Base64Content"],
-		},
-		{
-			contentType: hexContent,
-			fn:          checkHex,
-			severity:    severity.SeverityConfiguration["HexContent"],
-		},
+		//		{
+		//			contentType: base64Content,
+		//			fn:          checkBase64,
+		//			severity:    severity.SeverityConfiguration["Base64Content"],
+		//		},
+		//		{
+		//			contentType: hexContent,
+		//			fn:          checkHex,
+		//			severity:    severity.SeverityConfiguration["HexContent"],
+		//		},
 		{
 			contentType: creditCardContent,
 			fn:          checkCreditCardNumber,
@@ -214,14 +214,14 @@ func (fc *FileContentDetector) checkEachWord(line string, getResult fn) []string
 	return res
 }
 
-func checkBase64(fc *FileContentDetector, word string) string {
-	return fc.base64Detector.CheckBase64Encoding(word)
-}
+//func checkBase64(fc *FileContentDetector, word string) string {
+//	return fc.base64Detector.CheckBase64Encoding(word)
+//}
 
 func checkCreditCardNumber(fc *FileContentDetector, word string) string {
 	return fc.creditCardDetector.checkCreditCardNumber(word)
 }
 
-func checkHex(fc *FileContentDetector, word string) string {
-	return fc.hexDetector.CheckHexEncoding(word)
-}
+//func checkHex(fc *FileContentDetector, word string) string {
+//	return fc.hexDetector.CheckHexEncoding(word)
+//}
